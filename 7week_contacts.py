@@ -42,8 +42,8 @@ while turning_point:
     elif choice == 5:  #Exiting the program.
         print("Exiting the contacts...")
         turning_point=False
-#newcontacts=(burasi eksik) dosyaya yazdirmak nasil oluyor sozluklerde calismayan bir ozellik
-#with open("contacts.txt","w+",encoding="utf-8")as file:  #contacts degerini sozlukten baska bir degere cevirmeliyiz.
-    #file.write(list(contacts))
-   # print(file)
+with open("contacts.txt","w+",encoding="utf-8")as file:  #We are opening a file and saving the dict in file...
+    for k, v in contacts.items():
+        file.write(str(k) + "=" + str(v) + "\n")
+    file.close()
 
