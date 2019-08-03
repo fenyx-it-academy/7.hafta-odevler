@@ -1,9 +1,5 @@
-
 print('*'*30+'\n\n'+'Telefon Rehberi'.rjust(22)+'\n\n'+'1.Isim Ara\n'+'2.Yeni Isim Ekle\n'+'3.Isim ve Numara Guncelle\n'
       +'4.Isim Sil\n'+'5.Rehber Listesi\n'+'Cikis icin "q" ya basin!\n\n'+'*'*30+'\n')
-
-
-
 
 try:
     islem = ''
@@ -29,7 +25,6 @@ try:
             numara = input('Telefon Numarasi:')
             # kullanicinin eklemek istedigi isim ve numarayi sozluge kaydettik
             telefonRehberi.update({isim: numara})
-
             # actigimiz dosyaya sozlukteki gincel isim ve numaralari yazdiriyoruz
             for key, value in telefonRehberi.items():
                 if key and value is not None:
@@ -55,8 +50,6 @@ try:
             except:
                 print('Yazdiginiz isim rehberde yok.')
                 continue
-
-
         elif islem == '4':
             try:
                 isim = input("Silinecek isim:")
@@ -81,7 +74,6 @@ try:
                     rehberListesi.write(key + ': ' + value + '\n')
                 print(key, value)
             rehberListesi.close()
-
             print('\nRehberinizde {} isim bulunmaktadir.'.format(a))
         else:
             print('Lutfen gecerli bir islem girin!')
