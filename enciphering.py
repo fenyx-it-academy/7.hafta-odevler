@@ -7,24 +7,23 @@ enciphering = {}
 
 for let in let_num_cha:
     for cha in characters:
-        if cha not in enciphering.values():                     
+        if cha not in enciphering.values():
             enciphering[let] = cha
         else:
-            add = random.choice(characters)
-            cha += add
-            if cha not in enciphering.values():                 #do same process as first if block
-                enciphering[let] = cha
-            else:
-                add = random.choice(characters)
-                cha += add
-                if cha not in enciphering.values():             #do same process as first if block
+            for i in characters:
+                cha += i
+                if cha not in enciphering.values():                 #do same process as first if block
                     enciphering[let] = cha
                 else:
-                    add = random.choice(characters)
-                    cha += add
-                    if cha not in enciphering.values():
+                    cha += i
+                    if cha not in enciphering.values():             # do same process as first if block
                         enciphering[let] = cha
-                        
+                    else:
+                        for i in characters:
+                            cha += i
+                            if cha not in enciphering.values():     # do same process as first if block
+                                enciphering[let] = cha
+
 for i in enciphering.items():
     print(i)
 
@@ -53,20 +52,20 @@ try:
             enciphered_text = input("Please enter your enciphered text to make a text:")
             enciphered_text += " "                              #add a space to make words correctly
             make_letter = ""                                    #to add enciphering here in order to find its letter situation
-            make_text = ""                                      #to add letters 
+            make_text = ""                                      #to add letters
             for enc in enciphered_text.lower():
                 if enc != " ":
+                    n = 0                                       #set a 'n' variable to make text correctly according to space
                     make_letter += enc
-                elif enc == " ":
-                    make_text += list(enciphering.keys())[list(enciphering.values()).index(make_letter)]#to find the letter according to enciphering
-                    make_letter = ""                            #after all make_letter is being empty
-                elif enc == "  ":
-                    make_text += " "
-                    
-                        
-           
+                else:
+                    n += 1
+                    if n == 2:
+                        make_text += " "
+                    else:
+                        make_text += list(enciphering.keys())[list(enciphering.values()).index(make_letter)]  # to find the letter according to enciphering
+                        make_letter = ""
             print(f"Your text is '{make_text}'\n")
-            
+
         elif replying.lower() == "q":
             break
 
