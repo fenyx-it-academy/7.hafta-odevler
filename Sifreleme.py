@@ -16,21 +16,25 @@ karsilik={'a': 'b', 'b': 'e', 'c': 'v', 'd': 'j', 'e': 'Q', 'f': 'w', 'g': 'T', 
 sifreli=''
 rakamlar=[]
 sonuc=''
+count = 0
 while True:
     print(menu)
     secim=input()
     if secim=="1":
         kelime=input("Sifrelemek istenen kelime:")
         for i in kelime:
-            sifreli+=karsilik[i]
+            a=random.randint(1,100)
+            rakamlar.append(str(a))
+            sifreli+=karsilik[i]+rakamlar[count]
+            count+=1
         print("sifreli hali:", sifreli)
 
     elif secim=='2':
         kelime=input("sifresini cozmek istediginiz kelimeyi giriniz:")
         for i in kelime:
             for k,l in karsilik.items():
-                if i==l:
+                if i==l and i.isnumeric()==False:
                     sonuc+=k
-        print("sifrelenen kelime", sonuc)
+        print("sifrelenen kelime:", sonuc)
     elif secim=="3":
         break
