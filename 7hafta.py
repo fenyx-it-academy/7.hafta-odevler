@@ -1,81 +1,52 @@
-##*TO DO LIST*
-##-Yapilacaklar listesi ve yapilanlar listesi seklinde iki bos liste olusturun. Kullanicinin yapabilecegi islemler:
-##   *Yapilacaklar listesine gorev ekleme
-##       ->append metodu kullanilsin
-##   *Yapilacaklar listesinden gorev silme
-##       -> del metodu kullanilsin
-##   *Yapilacaklar listesindeki gorevi yapilanlar listesine atama
-##       -> pop metodu kullanilsin
-##   *Yapilanlar listesini goruntuleme
-##   *kullanıcı yapılacaklar listesinin içini boşaltma
-##       -> clear metodu kullanılsın
-##-Dongu her basa dondugunde yapilacaklar listesi goruntulensin
-##-Her iki liste goruntulenirken liste elemanlari numaralandirilarak verilsin
-##   ORN:
-##       Yapilacaklar Listesi:
-##           1- Python odevini yap.
-##           2- Alis-veris yapmaya git.
-##           3- Ahmet'i ara.
-##- Eger yapilacaklar listesi bos ise "Su an yapilacaklar listeniz bos" seklinde bir cikti versin.
-
-
-Yapilacaklar=["YEMEK YAPILACAK", "ODEV YAPILACAK", "CANTA HAZIRLANACAK", "EVE TELEFON EDILECEK"]
-Yapilanlar=[]
-print(15*"0","TO DO list programi", 15*"0")
+#Bu online dersten alinan iceriktir.
+MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
+                    'C':'-.-.', 'D':'-..', 'E':'.',
+                    'F':'..-.', 'G':'--.', 'H':'....',
+                    'I':'..', 'J':'.---', 'K':'-.-',
+                    'L':'.-..', 'M':'--', 'N':'-.',
+                    'O':'---', 'P':'.--.', 'Q':'--.-',
+                    'R':'.-.', 'S':'...', 'T':'-',
+                    'U':'..-', 'V':'...-', 'W':'.--',
+                    'X':'-..-', 'Y':'-.--', 'Z':'--..',
+                    '1':'.----', '2':'..---', '3':'...--',
+                    '4':'....-', '5':'.....', '6':'-....',
+                    '7':'--...', '8':'---..', '9':'----.',
+                    '0':'-----', ', ':'--..--', '.':'.-.-.-',
+                    '?':'..--..', '/':'-..-.', '-':'-....-',
+                    '(':'-.--.', ')':'-.--.-'}
+print("\nMors alfabesine gore sifreleme ve desifreleme islemi yapan programa hosgeldiniz!!!\n")
 while True:
-  menu=input("""    Listeye gorev eklemek icin------->1
-    Listeden gorev silmek icin ------>2
-    Listeyi tum bosaltmak icin------->3
-    Listedeki gorevi \"Yapilanlar\" listesine gondermekmek icin------>4
-    Yapilanlar listesini gormek icin ------>5
-    Cikmak icin---------------------->6
-    \ttuslayiniz:""")
-  menu=int(menu)
-  if menu == 1:
-    Gorev=input("Yapacaginiz gorevi giriniz:")
-    Yapilacaklar.append(Gorev)
-    print(Gorev, ":\tgorevi basariyla listeye eklenmisir.")
-    print("Yeni gorev listesi su sekildedeir.")
-    for öğe_sırası in range(len(Yapilacaklar)):
-        print("{}- {}".format(öğe_sırası+1, Yapilacaklar[öğe_sırası]))
-    continue
-  elif menu==2:
-      for öğe_sırası in range(len(Yapilacaklar)):
-        print("{}- {}".format(öğe_sırası+1, Yapilacaklar[öğe_sırası]))
-      secim=input("Yukarda listelenen gorevlerden silmek istediklerinizin numarasini giriniz:")
-      silinecek=Yapilacaklar[int(secim)-1]
-      Yapilacaklar.remove(silinecek)
-      print(silinecek, "gorevi listeden silinmistir.\n Yeni Yapilacaklar listesi asagidaki gibidir.")
-      for öğe_sırası in range(len(Yapilacaklar)):
-        print("{}- {}".format(öğe_sırası+1, Yapilacaklar[öğe_sırası]))
-        continue
-  elif menu==3:
-    Yapilacaklar.clear()
-    print("Yapilacaklar listeniz bom bos")
-    continue
-  elif menu==4:
-      for öğe_sırası in range(len(Yapilacaklar)):
-          print("{}- {}".format(öğe_sırası+1, Yapilacaklar[öğe_sırası]))
-          continue
-      secim=input("Yukarda listelenen gorevlerden hangisini \"Yapilanlar\" klasorune gondermek istersiniz onun numarasini giriniz:")
-      Yapilanlar+=[str(Yapilacaklar[int(secim)-1])]
-      gidecek=Yapilacaklar[int(secim)-1]
-      Yapilacaklar.pop(int(secim)-1)
-      print(gidecek, "gorevi Yapilanlara eklenmistir.\n Yeni Yapilacaklar ve Yapilanlar listesi asagidaki gibidir.")
-      print("YAPILACAKLAR")
-      for öğe_sırası in range(len(Yapilacaklar)):
-          print("{}- {}".format(öğe_sırası+1, Yapilacaklar[öğe_sırası]))
-          continue
-      print("YAPILANLAR")
-      for sira in range(len(Yapilanlar)):
-          print("{}- {}".format(sira+1, Yapilanlar[sira]))
-          continue
-  elif menu==5:
-    print("YAPILANLAR")
-    for sira in range(len(Yapilanlar)):
-          print("{}- {}".format(sira+1, Yapilanlar[sira]))
-          continue
-  elif menu==6:
-    print("PROGRAM KAPANIYOR....IYI GUNLER.")
-    break
-          
+    secim = input("Sifreleme islemi yapmak icin 1'e basiniz, desifreleme islemi yapmak icin de 2'ye basiniz.")
+
+    if secim == "1":
+        mesaj = input("Lutfen sifrelemek istediginiz metni giriniz:\n").upper()
+        sifre = ""
+        for harf in mesaj:
+            if harf != " ":
+                sifre += MORSE_CODE_DICT[harf] + " "       
+            else:
+                sifre += " "
+        print(sifre)
+
+    if secim == "2":
+        mesaj = input("Lutfen sifresini cozmek istediginiz kodu giriniz:\n")
+        mesaj += " "
+        desifre = ""
+        mors_kar = ""
+
+        for harf in mesaj:
+            if harf != " ":
+                i = 0
+                mors_kar += harf
+            else:
+                i += 1 
+                if i == 2:
+                    desifre += " "            
+                else:
+                    desifre += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT.values()).index(mors_kar)]
+                    mors_kar = ""
+
+        print(desifre)
+
+        
+        
