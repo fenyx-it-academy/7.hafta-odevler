@@ -1,7 +1,7 @@
 data=[]
 telefon_defteri = {}
 
-with open ("telefon_defteri.txt","r+") as file:
+with open ("telefon_defteri.txt","w+") as file:
     for i in file:
         if i !="":
             data=i.split(":")
@@ -19,25 +19,25 @@ with open ("telefon_defteri.txt","r+") as file:
 
     while True:
         print (menu)
-        tercih=raw_input("Yapmak istediginiz islemi secin")
+        tercih=input("Yapmak istediginiz islemi secin: ")
         if tercih=="2":
-            kisi = raw_input("Telefon numarasini ogrenmek istediginiz kisinin adini giriniz: ")
+            kisi = input("Telefon numarasini ogrenmek istediginiz kisinin adini giriniz: ")
             if kisi in telefon_defteri:
                 cevap = "{} adli kisinin telefon numarasi: {}"
                 print(cevap.format(kisi, telefon_defteri[kisi]))
             else:
                 print ("Kisi bulunamadi")
         elif tercih=="1":
-            ad=raw_input("eklemek istediginiz isim:")
-            no=raw_input(" eklemek istediginiz no:")
+            ad=input("eklemek istediginiz isim:")
+            no=input(" eklemek istediginiz no:")
             telefon_defteri[ad]=no
 
         elif tercih=="3":
-            guncelle = raw_input("Guncellemek isteginiz kisinin ismi:")
-            no=raw_input("Yeni numara:")
+            guncelle = input("Guncellemek isteginiz kisinin ismi:")
+            no=input("Yeni numara:")
             telefon_defteri[guncelle]=no
         elif tercih=="4":
-            sil=raw_input("silmek istediginiz ismi giriniz:")
+            sil=input("silmek istediginiz ismi giriniz:")
             telefon_defteri.pop(sil)
         elif tercih=="5":
             break
