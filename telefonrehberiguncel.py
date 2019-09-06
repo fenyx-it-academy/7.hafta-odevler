@@ -6,7 +6,15 @@ Rehberde degisiklik yapmak icin:    3
 Islemden cikmak icin    :           q
 basiniz!!!!\n"""
 rehber={}
+with open("information.txt", "r+") as telefonrehber:
+    liste=telefonrehber.readlines()
 
+for i in liste:
+    boslist = []
+    for k in i.split():
+        boslist.insert(0,k)
+    degerrehber={boslist[1]:boslist[0]}
+    rehber.update(degerrehber)
 while True:
     print(rehber)
     secim=input(telefon)
