@@ -13,7 +13,7 @@ print("""
 
 
         """)
-rehber={"isim":"tel no"}
+rehber={"isim":"tel no"}                       #rehber olarak sozluk kullanildi.
 print("Rehber: ",rehber)
 
 while True:
@@ -22,7 +22,7 @@ while True:
         print("Sistemden Cikiliyor...")
         quit()
     elif secim=="1":
-        isim=input("Rehbere eklemek istediginiz ismi giriniz: ").upper()
+        isim=input("Rehbere eklemek istediginiz ismi giriniz: ").upper() #Rehbere eklenen tum isimler buyuk harfle kayit ediliyor.
         while True:            
             tel=input("Bu isme ait tel no'yu giriniz:06- ")
             if len(tel)!=10:
@@ -33,7 +33,7 @@ while True:
         rehber[isim]=tel
         print("Yeni kisi Rehbere eklendi.")
         
-        with open ( "Rehber.txt" , "w" ) as dosya :
+        with open ( "Rehber.txt" , "w" ) as dosya :         #Rehber isimli dosyaya kayit ediliyor.
             for key,value in rehber.items():
                 kayit=f'{key} : {value} ''\n'
                 print(kayit)
@@ -78,7 +78,7 @@ while True:
                         dosya.write(kayit)
         continue
     elif secim=="4":
-        guncel_isim=input("Telefonunu guncellemek istediginiz ismi yazin: ").upper()
+        guncel_isim=input("Telefonunu guncellemek istediginiz ismi yazin: ").upper() #guncelleme yapmak icin var olan isimlerden secim yapilabilir
         if guncel_isim=="":
             print("Lutfen gecerli bir isim giriniz.")
         elif not guncel_isim in rehber:
