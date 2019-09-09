@@ -19,24 +19,28 @@ giris='''
 5-dosya kaydet
 >>>>...cikis icin bir tusa basiniz
 '''
-
-rehber={}       # bos bir sozluk olusturduk
+with open("rehber1.txt", "r", encoding='utf-8') as f:
+    veri=f.read()
+rehber={}                                   # bos bir sozluk olusturduk
+for i in veri.split('\n'):
+    kisi=i.split(':')
+    rehber[kisi[0]]=kisi[1]                 #dosyamizda mevcut kayitli olan kisileri rehberimize ekledik
 while True:
     print(giris)
     cvp=input('tercih yapiniz....>>>')
-    if cvp =='1': # kisi ekleme
+    if cvp =='1':                           # kisi ekleme
         isim=input('isimi giriniz....:')
         tel=input('tel giriniz...:')
-        rehber[isim]=tel            #sözlük[anahtar] = değer
+        rehber[isim]=tel                    #sözlük[anahtar] = değer
 
-    elif cvp == '2':    # kisi silme
+    elif cvp == '2':                        # kisi silme
         isim=input('silmek istediginiz ismi giriniz....:')
         if isim in rehber:
             rehber.pop(isim)
         else:
             print('girmis oldugunuz isim rehberde yok')
             continue
-    elif cvp== '3': #bilgi guncelleme
+    elif cvp== '3':                         #bilgi guncelleme
         isim = input('guncellemek istediginiz kisinin ismini giriniz')
         if isim in rehber:
             print("{} nin telefon numarası: {}".format(isim, rehber[isim]))
@@ -45,13 +49,15 @@ while True:
         else:
             print("Aradığınız kişi rehberde yok!")
             break
-    elif cvp == '4':#rehberi goster
+    elif cvp == '4':                        #rehberi goster
         for isim,tel in rehber.items():
             print(isim,':',tel)
-    elif cvp == '5':  # dosya kayit
-        with open('rehber.txt', 'w') as file:
-            for i in rehber.items():
-                file.writelines(i)
+
+    elif cvp == '5':                        # dosya kayit
+        with open('rehber1.txt', 'w') as f:
+            for isim,tel in rehber.items():
+                print(f'{isim} : {tel}',file=f)
+
     else:
         print('cikiliyor....bye')
         quit()
