@@ -5,74 +5,72 @@ print("""
       |             TELEFON REHBERI                |
       |               HOSGELDINIZ                  |
       |                                            |
-      ==============================================\n\n""")
+      ==============================================\n""")
 
-veritabani = {}         #Numara ve ismi atacagimiz sozluk
-guncellenen = {}        # 3.secenegi yazarken olusturmak zorunda kaldim.
-                        # Guncellenen yeni isim ve noyu once buraya sonra ana sozluge atcaz
-
-while True:
-
-    islem = input("""Lutfen Yapmak IStediginiz Islemi Seciniz !
-    
+print("""
     1. Kisi Ekleme
     2. Kisi Silme
     3. Kisi Yada Numara Guncelleme
-    4. Rehberi Listeleme
-    
-    Secenek : """.upper())
+    4. Rehberi Listeleme\n""")
 
-    while True:
-        if islem=="1":
-            isim = input("Eklemek Istediginiz Kisinin Adini Giriniz : ")
-            numara = input("Eklemek Istediginiz Kisinin Numarasini Giriniz : ")
-            veritabani[isim] = numara           #bu islem girilen isim ve numarayi sozluge atiyor
-            print(veritabani)
-            islem2 = input("""
-            Kisi Eklemeye Devam Etmek Icin ENTER' a Basiniz, Bir Ust Menuye Donmek Icin baska bir tusa  Basiniz! : """.upper())
-            if islem2=="":
-                continue
+
+rehber={}
+
+while True:
+    secim=input("Yapacaginiz Islemi Seciniz:")
+    if secim=="1":
+        tel_no=input("Olusturulacak kisinin telefon numarasini giriniz: ")
+        adı_soyadı=input("Olusturulacak kisinin Adini veSoyadini Giriniz: ")
+        rehber[adı_soyadı]=tel_no
+        print(adı_soyadı," kisisi kaydedildi..")
+
+    if secim=="2":
+        sil=input("silmek istediginiz kişi'nin ad-soyad giriniz:")
+        a=(input("adlı kişi silinsin mi?\nsilmek için 2'ye basınız:\nvazgeçmek için 1'e basınız:")).lower()
+
+        if a =="2":
+            print(rehber.pop(sil,"kisisi bulunamadı"))
+
+        elif a=="1":
+            print(sil,"silmekten vazgeçtiniz")
+
+        else:
+
+            print("yanlış giriş yaptınız tekrar deneyin...")
+        continue
+
+    if secim=="3":
+        güncel=input("güncellemek istediğiniz kişinin ad soyadını giriniz:")
+        for y in rehber.keys():
+            if y == güncel:
+                adı_soyadı1=input("yeni ad-soyad:")
+                tel_no1=input("yeni telefon numarası:")
+                rehber[adı_soyadı1]=tel_no1
+                rehber.pop(güncel)
+                print(rehber)
+                print(güncel,"kişi güncellendi")
+
             else:
-                break
+                print("böyle bir kişi telefon rehberinde bulunamadı")
+        break
 
-        if islem=="2":
-            secim= input("Lutfen Bilgilerini Silmek Istediginiz Kisinin adini yaziniz ! :")
-            veritabani.pop(secim)       #veritabanindan girilen isme ait bilgileri siler
-            print(veritabani)
-            islem2 = input("""Kisi Silmeye Devam Etmek Icin ENTER' a Basiniz, Bir Ust Menuye Donmek Icin baska bir tusa  Basiniz! : """.upper())
-            if islem2 == "":
-                continue
-            else:
-                break
+    if secim=="4":
+        rehber.items()
+        for anahtar,değer in rehber.items():
+            print("{}={}".format(anahtar,değer))
+            continue
 
+    if secim=="5":
+        çıkış=input("çıkmak için q'basınız:")
+        print("çıkılıyor....")
 
-        if islem=="3":
-            secim3 = input("Lutfen Bilgilerini Guncellemek Istediginiz Kisinin Ismini Giriniz : ")
-            print("Numara : ",veritabani[secim3])
-            veritabani.pop(secim3)      # Guncellenmesini istedigimiz kisi bilgilerini kisiyi belirttikten sonra  siliyoruz
-            ad = input("Yeni Ismi Giriniz : ")
-            numara = input("Yeni Numarayi Giriniz : ")
-            guncellenen[ad]=numara      #Yeni girilen yani guncellenen bilgileri actigimiz ikinci sozluge gonderdik
-            veritabani.update(guncellenen)      # ikinci sozluktekileri ana veritabanimiza gonderdik.
-            print(veritabani)
-            islem2 = input( """Guncelleme Islemine Devam Etmek Icin ENTER' a Basiniz, Bir Ust Menuye Donmek Icin baska bir tusa  Basiniz! : """.upper())
-            if islem2 == "":
-                continue
-            else:
-                break
-
-
-        if islem=="4":
-            if veritabani!="":
-                print(veritabani)
-                a=input("Bir Ust MEnuye Donmek Icin HErhangi Bir Tusa BAsiniz !")
-                break
-            if not veritabani:
-                print("Liste Bos\n")
-                break
-
-
-
+        break
+        
+dosya_kayıt=open("telefon\trehberi.txt","w")
+dosya_kayıt.write("adı_soyadı\tnel_no\n")
+for k,v in rehber.items():
+    dosya.write(a)
+dosya.close()
 
 
 
