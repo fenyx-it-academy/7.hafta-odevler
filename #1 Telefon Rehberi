@@ -1,3 +1,4 @@
+
 print("""
       =============================================="
       |                                            |
@@ -7,67 +8,72 @@ print("""
       |                                            |
       ==============================================\n""")
 
-print("""
-    1. Kisi Ekleme
-    2. Kisi Silme
-    3. Kisi Yada Numara Guncelleme
-    4. Rehberi Listeleme\n""")
-
-
+Secenekler='\n1- Telefona Kısı Ekleme\n' \
+     '2- Telefon Kısı Goruntuleme\n' \
+     '3- Kısı Ve Numara Guncelleme\n' \
+     '4- Telefon Kısısı silme\n' \
+     '5- Cikis\n' \
+     '---->'
+Lıste=[]
 rehber={}
 
-while True:
-    secim=input("Yapacaginiz Islemi Seciniz:")
-    if secim=="1":
-        tel_no=input("Olusturulacak kisinin telefon numarasini giriniz: ")
-        adı_soyadı=input("Olusturulacak kisinin Adini veSoyadini Giriniz: ")
-        rehber[adı_soyadı]=tel_no
-        print(adı_soyadı," kisisi kaydedildi..")
-
-    if secim=="2":
-        sil=input("silmek istediginiz kişi'nin ad-soyad giriniz:")
-        a=(input("adlı kişi silinsin mi?\nsilmek için 2'ye basınız:\nvazgeçmek için 1'e basınız:")).lower()
-
-        if a =="2":
-            print(rehber.pop(sil,"kisisi bulunamadı"))
-
-        elif a=="1":
-            print(sil,"silmekten vazgeçtiniz")
-
+with open("rehber.txt", "a+", encoding="utf-8") as Okuma:
+    for i in Okuma:
+        if i=="":
+            continue
         else:
+            Lıste = i.split(":")
+            rehber[Lıste[0]] = Lıste[1]
 
-            print("yanlış giriş yaptınız tekrar deneyin...")
+while True:
+    islem = input(Secenekler)
+
+    if islem=="1":
+        ad=input("Girilecek Kişinin Adı ve Soyadı=")
+        tel=input("Telefon Numarası=")
+        rehber[ad]=tel
         continue
 
-    if secim=="3":
-        güncel=input("güncellemek istediğiniz kişinin ad soyadını giriniz:")
-        for y in rehber.keys():
-            if y == güncel:
-                adı_soyadı1=input("yeni ad-soyad:")
-                tel_no1=input("yeni telefon numarası:")
-                rehber[adı_soyadı1]=tel_no1
-                rehber.pop(güncel)
-                print(rehber)
-                print(güncel,"kişi güncellendi")
+    elif islem=="2":
+        for i,j in rehber.items():
+            print(i,":",j)
+        continue
 
-            else:
-                print("böyle bir kişi telefon rehberinde bulunamadı")
-        break
-
-    if secim=="4":
-        rehber.items()
-        for anahtar,değer in rehber.items():
-            print("{}={}".format(anahtar,değer))
+    elif islem=="3":
+        secim=input("1-Ad Soyad degisikligi \n"
+                    "2-Telefon numarasi guncelleme\n"
+                    "3-Ana menu\n"
+                    "------>")
+        if secim=="1":
+            degisiklik_ad=input("guncellemek istediginiz kisinin adi ve soyadi=")
+            guncel_ad=input("guncel ad-soyad=")
+            m=rehber[degisiklik_ad]
+            rehber.pop(degisiklik_ad)
+            rehber[guncel_ad]=m
             continue
 
-    if secim=="5":
-        çıkış=input("çıkmak için q'basınız:")
-        print("çıkılıyor....")
+        elif secim=="2":
+            guncel={}
+            degisiklik_ad=input("Guncellenecek kısının adı ve soyadı= ")
+            guncel_tel=input("Yenı Numara=")
+            guncel[degisiklik_ad]=guncel_tel
+            rehber.update(guncel)
+            continue
 
+    elif islem=="4":
+        sil=input("Silmek istediginiz kaydin kısının adı ve soyadı= ")
+        if sil not in rehber:
+            print('Yanlis giris yaptiniz tekrar deneyiniz')
+            continue
+        rehber.pop(sil)
+        continue
+
+    elif islem=="5":
         break
 
-dosya_kayıt=open("telefon\trehberi.txt","w")
-dosya_kayıt.write("adı_soyadı\tnel_no\n")
-for k,v in rehber.items():
-    dosya.write(a)
-dosya.close()
+with open("rehber.txt","w",encoding="utf-8") as yazma:
+    for i,j in rehber.items():
+        yazma.write(i)
+        yazma.write("=")
+        yazma.write(j)
+        yazma.write("\n")
